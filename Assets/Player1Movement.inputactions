@@ -1,5 +1,5 @@
 {
-    "name": "PlayerMovement",
+    "name": "Player1Movement",
     "maps": [
         {
             "name": "Movement",
@@ -13,12 +13,32 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Rotate",
+                    "type": "Value",
+                    "id": "e09b4c59-97a4-4102-a6f8-aa13b8caa9c8",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "5f42d0c3-a513-4f60-a043-a60a3229d18b",
+                    "id": "6a859593-b447-45d4-90b8-7dda5526df71",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "68a7982e-2461-4967-becf-07f77ae27b61",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5540068253951863051}
   - component: {fileID: 5881058549205644357}
   m_Layer: 0
-  m_Name: P1CubeW2
+  m_Name: TankPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,48 +78,35 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
-    - m_Name: 2D Vector
-      m_Id: 72edff42-0532-4415-9342-a19d007361f3
-      m_Path: 2DVector
+    - m_Name: 
+      m_Id: 7e8b5704-6fa4-4837-a1bd-8736749d5e51
+      m_Path: <Gamepad>/leftStick
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Move
-      m_Flags: 4
-    - m_Name: up
-      m_Id: b4ad6c20-41bd-4fa1-91a9-222e8a9be83d
-      m_Path: <Gamepad>/leftStick/up
+      m_Flags: 0
+    m_Flags: 0
+  rotateAction:
+    m_Name: Rotate
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 270d72c2-47cd-474b-9e05-85895f650921
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 8cb59ac9-3bd3-4e4a-b27f-97af823a03a5
+      m_Path: <Gamepad>/rightStick
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: down
-      m_Id: 2b9f3fb8-c4b2-4080-8077-8c5140c7e522
-      m_Path: <Gamepad>/leftStick/down
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: left
-      m_Id: 5ea856cc-f3a4-41cf-929e-b04812f54b76
-      m_Path: <Gamepad>/leftStick/left
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: right
-      m_Id: c2ae5e21-b5e1-44c5-9e9d-18c8f75feab4
-      m_Path: <Gamepad>/leftStick/right
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
+      m_Action: Rotate
+      m_Flags: 0
     m_Flags: 0
   moveValue: {x: 0, y: 0}
+  rotateValue: {x: 0, y: 0}
+  turret: {fileID: 6793082384672819278}
 --- !u!114 &5881058549205644357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,6 +148,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8b278725-ae84-4eee-b054-451afbd7d40b
     m_ActionName: Movement/Move[/XInputControllerWindows/leftStick,/XInputControllerWindows1/leftStick]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5540068253951863051}
+        m_TargetAssemblyTypeName: TankController, Assembly-CSharp
+        m_MethodName: OnRotate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e09b4c59-97a4-4102-a6f8-aa13b8caa9c8
+    m_ActionName: Movement/Rotate[/XInputControllerWindows/rightStick]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
