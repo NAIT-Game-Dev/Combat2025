@@ -26,11 +26,15 @@ public class TankController : MonoBehaviour
     private void FixedUpdate()
     {
         // move the object based on the values of the gamepad
-        transform.Translate(Vector3.forward * moveValue.y * movementSpeed * Time.fixedDeltaTime);
-        transform.Rotate(Vector3.up, moveValue.x * rotationSpeed * Time.fixedDeltaTime);
+        transform.Translate(Vector3.forward * moveValue.magnitude * movementSpeed * Time.fixedDeltaTime);
+        if (moveValue.x != 0 || moveValue.y != 0)
+        {
+            transform.LookAt(transform.position + new Vector3(moveValue.x, 0, moveValue.y));
+        }
+
         if (rotateValue.x !=0 || rotateValue.y !=0 )
         {
-            turret.transform.LookAt(transform.position + new Vector3(rotateValue.x, turret.transform.localPosition.y, rotateValue.y));
+            turret.transform.LookAt(turret.transform.position + new Vector3(rotateValue.x, 0, rotateValue.y));
         }        
     }
 
