@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    float damage = 10.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,13 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Health healthscript = collision.gameObject.GetComponent<Health>();
+
+        if (healthscript != null )
+        {
+            healthscript.ApplyDamage(damage, gameObject);
+        }
+        
         DestroyProjectile();
     }
 
