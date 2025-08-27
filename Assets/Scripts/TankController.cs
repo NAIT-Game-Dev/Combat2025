@@ -4,13 +4,14 @@ using UnityEngine.InputSystem;
 public class TankController : MonoBehaviour
 {
     float movementSpeed = 3.0f;
-    float rotationSpeed = 100.0f;
+    float fireRate = 2.0f;
+    float timeStamp;
 
-    [SerializeField] InputAction moveAction, rotateAction;
+    [SerializeField] InputAction moveAction, rotateAction, fireAction;
 
     [SerializeField] Vector2 moveValue, rotateValue;
 
-    [SerializeField] GameObject turret;
+    [SerializeField] GameObject turret, barrelEnd, projectile;
 
     private void Start()
     {
@@ -46,5 +47,15 @@ public class TankController : MonoBehaviour
     public void OnRotate(InputAction.CallbackContext context)
     {
         rotateValue = context.ReadValue<Vector2>();
+    }
+
+    public void OnFire(InputAction.CallbackContext context)
+    {
+        if (Time.time > timeStamp + fireRate)
+        {
+            timeStamp = Time.time;
+            GameObject instantiatedObject = Instantiate(projectile, barrelEnd.transform.position, barrelEnd.transform.rotation);
+            instantiatedObject.GetComponent<Rigidbody>().velocity = instantiatedObject.transform.forward * 20;
+        }
     }
 }
