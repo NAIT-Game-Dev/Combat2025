@@ -7,10 +7,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<GameObject> tanks;
     [SerializeField] GameObject[] spawnPoints;
 
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Screen.SetResolution(1600, 1000, true);
     }
 
     // Update is called once per frame

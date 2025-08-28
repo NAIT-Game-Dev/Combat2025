@@ -83,8 +83,9 @@ public class LobbyW2 : MonoBehaviour
             PlayerInput player = playerInputManager.JoinPlayer(i, -1, null,  Gamepad.all[index]);
             player.transform.position = spawnLocations[i].transform.position;
             player.GetComponent<TankController>().SetPlayerID(i);
-            gameManager.AddTank(player.gameObject);
+            gameManager.AddTank(player.gameObject);            
         }
+        MyEvents.ActivateScores.Invoke(gamepadManager.PlayerCount());
         gameObject.SetActive(false);
     }
 }
