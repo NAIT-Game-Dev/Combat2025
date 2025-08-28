@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public void Respawn(int index)
     {
         tanks[index].transform.position = spawnPoints[index].transform.position;
+        tanks[index].transform.rotation = Quaternion.identity;
         tanks[index].GetComponent<Health>().HealDamage(100);
     }
 }
