@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class LobbyW2 : MonoBehaviour
 {
     [SerializeField] GamepadManager gamepadManager;
+    [SerializeField] GameManager gameManager;
     [SerializeField] List<TMP_Text> playerText;
     [SerializeField] Button startButton;
 
@@ -83,6 +83,7 @@ public class LobbyW2 : MonoBehaviour
             PlayerInput player = playerInputManager.JoinPlayer(i, -1, null,  Gamepad.all[index]);
             player.transform.position = spawnLocations[i].transform.position;
             player.GetComponent<TankController>().SetPlayerID(i);
+            gameManager.AddTank(player.gameObject);
         }
         gameObject.SetActive(false);
     }

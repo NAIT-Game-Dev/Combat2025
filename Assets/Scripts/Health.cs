@@ -35,6 +35,7 @@ public class Health : MonoBehaviour
         if (currentHealth == minHealth)
         {
             MyEvents.AddScore.Invoke(ID);
+            GameObject.Find("GameManager").GetComponent<GameManager>().Respawn(GetComponent<TankController>().GetPlayerID());
         }
     }
 

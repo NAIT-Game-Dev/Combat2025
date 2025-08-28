@@ -45,6 +45,11 @@ public class TankController : MonoBehaviour
         playerID = ID;
     }
 
+    public int GetPlayerID()
+    {
+        return playerID;
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         moveValue = context.ReadValue<Vector2>();
