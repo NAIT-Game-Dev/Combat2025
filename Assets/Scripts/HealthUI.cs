@@ -24,7 +24,6 @@ public class HealthUI : MonoBehaviour
         if (healthScript != null)
         {
             healthbar.rectTransform.localScale = new Vector3(healthScript.GetCurrentHealth() / healthScript.GetMaxHealth(), 1, 1);
-            //transform.LookAt(Camera.main.transform.position);
         }
     }
 

@@ -6,6 +6,7 @@ public class TankController : MonoBehaviour
     float movementSpeed = 3.0f;
     float fireRate = 2.0f;
     float timeStamp;
+    [SerializeField] int playerID;
 
     [SerializeField] InputAction moveAction, rotateAction, fireAction;
 
@@ -39,6 +40,11 @@ public class TankController : MonoBehaviour
         }        
     }
 
+    public void SetPlayerID(int ID)
+    {
+        playerID = ID;
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         moveValue = context.ReadValue<Vector2>();
@@ -56,6 +62,7 @@ public class TankController : MonoBehaviour
             timeStamp = Time.time;
             GameObject instantiatedObject = Instantiate(projectile, barrelEnd.transform.position, barrelEnd.transform.rotation);
             instantiatedObject.GetComponent<Rigidbody>().velocity = instantiatedObject.transform.forward * 20;
+            instantiatedObject.GetComponent<Projectile>().SetPlayerID(playerID);
         }
     }
 }

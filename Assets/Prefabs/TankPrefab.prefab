@@ -73,6 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80be1cf16bda904fb57fde0820f1f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerID: 0
   moveAction:
     m_Name: Move
     m_Type: 0
@@ -237,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   minHealth: 0
-  maxHealth: 100
+  maxHealth: 30
 --- !u!1 &1476762639981173824
 GameObject:
   m_ObjectHideFlags: 0

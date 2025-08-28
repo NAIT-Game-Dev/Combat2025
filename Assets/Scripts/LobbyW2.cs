@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class LobbyW2 : MonoBehaviour
@@ -30,6 +31,16 @@ public class LobbyW2 : MonoBehaviour
             if (Gamepad.current.startButton.wasPressedThisFrame)
             {
                 gamepadManager.PlayerJoined(Gamepad.current.deviceId);
+            }
+
+            if (Gamepad.current.buttonEast.wasPressedThisFrame)
+            {
+                gamepadManager.PlayerLeft(Gamepad.current.deviceId);
+
+                for (int i = 0; i < playerText.Count; i++)
+                {
+                    playerText[i].text = "Press Start to Join";
+                }
             }
         }
 
@@ -71,6 +82,7 @@ public class LobbyW2 : MonoBehaviour
             }
             PlayerInput player = playerInputManager.JoinPlayer(i, -1, null,  Gamepad.all[index]);
             player.transform.position = spawnLocations[i].transform.position;
+            player.GetComponent<TankController>().SetPlayerID(i);
         }
         gameObject.SetActive(false);
     }

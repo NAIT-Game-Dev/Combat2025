@@ -71,6 +71,14 @@ public class GamepadManager : MonoBehaviour
         }
     }
 
+    public void PlayerLeft(int id)
+    {
+        if (gamepadID.Contains(id))
+        {
+            gamepadID.Remove(id);
+        }
+    }
+
     public int PlayerCount()
     {
         return gamepadID.Count;

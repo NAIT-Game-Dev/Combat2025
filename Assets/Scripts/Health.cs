@@ -23,7 +23,7 @@ public class Health : MonoBehaviour
         return maxHealth; 
     }
 
-    public void ApplyDamage(float damage, GameObject origin)
+    public void ApplyDamage(float damage, int ID)
     {
         currentHealth -= damage;
 
@@ -32,10 +32,13 @@ public class Health : MonoBehaviour
             currentHealth = minHealth;
         }
 
-        SendMessageUpwards("CharacterDamaged", origin);
+        if (currentHealth == minHealth)
+        {
+            MyEvents.AddScore.Invoke(ID);
+        }
     }
 
-    public void HealDamage(float damage, GameObject origin)
+    public void HealDamage(float damage)
     {
         currentHealth += damage;
 
