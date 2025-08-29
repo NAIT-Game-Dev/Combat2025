@@ -56,7 +56,7 @@ public class LobbyW2 : MonoBehaviour
             }
         }
 
-        if (gamepadManager.PlayerCount() == 0)
+        if (gamepadManager.PlayerCount() < 2)
         {
             startButton.interactable = false;
         }

@@ -16,7 +16,22 @@ public class MenuUI : MonoBehaviour
     {
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            Application.Quit();
+            ExitGame();
         }
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void ReplayGame()
+    {
+        MyEvents.Replay.Invoke();
+    }
+
+    public void OpenLobby()
+    {
+        MyEvents.OpenLobby.Invoke();
     }
 }
