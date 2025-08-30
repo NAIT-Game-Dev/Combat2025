@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -37,10 +38,11 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        for (int i = 0; i < tanks.Count; i++)
-        {
-            tanks[i].gameObject.GetComponent<TankController>().enabled = false;
-        }
+        //for (int i = 0; i < tanks.Count; i++)
+        //{
+        //    tanks[i].gameObject.GetComponent<TankController>().enabled = false;
+        //}
+        MyEvents.TogglePause.Invoke();
         gameOverPanel.SetActive(true);
     }
 
@@ -49,8 +51,8 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < tanks.Count; i++)
         {
             Respawn(i);
-            tanks[i].gameObject.GetComponent<TankController>().enabled = true;
         }
+        MyEvents.TogglePause.Invoke();
         MyEvents.ActivateScores.Invoke(tanks.Count);
         gameOverPanel.SetActive(false);
     }

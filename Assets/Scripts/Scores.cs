@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -37,9 +38,16 @@ public class Scores : MonoBehaviour
 
     public void ActivateScoreBoards(int value)
     {
-        for (int i = 0; i < value; i++)
+        for (int i = 0; i < scorePanels.Length; i++)
         {
-            scorePanels[i].SetActive(true);
+            if (i < value)
+            {
+                scorePanels[i].SetActive(true);
+            }
+            else
+            {
+                scorePanels[i].SetActive(false);
+            }
         }
         StartGame();
     }
@@ -50,8 +58,9 @@ public class Scores : MonoBehaviour
     }
     public void StartGame()
     {
-        gameTime = 10;
+        gameTime = 20;
         UpdateTime();
+        ResetScores();
     }
 
     void UpdateTime()
@@ -65,6 +74,15 @@ public class Scores : MonoBehaviour
         {
             timeText.text = "Game Over";
             MyEvents.GameOver.Invoke();
+        }
+    }
+
+    void ResetScores()
+    {
+        for (int i = 0; i < scoreText.Length; i++)
+        {
+            scores[i] = 0;
+            scoreText[i].text = scores[i].ToString();
         }
     }
 }
