@@ -58,7 +58,7 @@ public class Scores : MonoBehaviour
     }
     public void StartGame()
     {
-        gameTime = 20;
+        gameTime = 60;
         UpdateTime();
         ResetScores();
     }

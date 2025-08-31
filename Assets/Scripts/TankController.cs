@@ -71,6 +71,7 @@ public class TankController : MonoBehaviour
         {
             timeStamp = Time.time;
             GameObject instantiatedObject = Instantiate(projectile, barrelEnd.transform.position, barrelEnd.transform.rotation);
+            //Physics.IgnoreCollision(gameObject.GetComponentInChildren<Collider>(), instantiatedObject.GetComponentInChildren<Collider>());
             instantiatedObject.GetComponent<Rigidbody>().velocity = instantiatedObject.transform.forward * 20;
             instantiatedObject.GetComponent<Projectile>().SetPlayerID(playerID);
         }
