@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject[] spawnPoints;
     [SerializeField] GameObject gameOverPanel;
     [SerializeField] GameObject lobbyPanel;
+    [SerializeField] GameObject replayButton;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +46,7 @@ public class GameManager : MonoBehaviour
         //}
         MyEvents.TogglePause.Invoke();
         gameOverPanel.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(replayButton);
     }
 
     public void Replay()

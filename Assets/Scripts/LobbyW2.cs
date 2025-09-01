@@ -9,7 +9,7 @@ public class LobbyW2 : MonoBehaviour
     [SerializeField] GamepadManager gamepadManager;
     [SerializeField] GameManager gameManager;
     [SerializeField] List<TMP_Text> playerText;
-    [SerializeField] Button startButton;
+    [SerializeField] GameObject startText, leaveText;
 
     [SerializeField] GameObject lobbyPanel;
 
@@ -42,6 +42,11 @@ public class LobbyW2 : MonoBehaviour
                     playerText[i].text = "Press Start to Join";
                 }
             }
+
+            if (Gamepad.current.buttonSouth.wasPressedThisFrame && gamepadManager.PlayerCount() > 1)
+            {
+                StartGame();
+            }
         }
 
         for (int i = 0; i < gamepadManager.PlayerCount(); i++)
@@ -55,14 +60,23 @@ public class LobbyW2 : MonoBehaviour
                 playerText[i].text = "Disconnected";
             }
         }
-
-        if (gamepadManager.PlayerCount() < 2)
+        
+        if (gamepadManager.PlayerCount() < 1)
         {
-            startButton.interactable = false;
+            leaveText.SetActive(false);
         }
         else
         {
-            startButton.interactable = true;
+            leaveText.SetActive(true);
+        }
+
+        if (gamepadManager.PlayerCount() < 2)
+        {
+            startText.SetActive(false);
+        }
+        else
+        {
+            startText.SetActive(true);
         }
     }
 
