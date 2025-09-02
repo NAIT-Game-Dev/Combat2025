@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class TankController : MonoBehaviour
 {
-    float movementSpeed = 3.0f;
+    float movementSpeed = 300.0f;
     float fireRate = 2.0f;
     float timeStamp;
     [SerializeField] int playerID;
@@ -16,9 +16,12 @@ public class TankController : MonoBehaviour
 
     bool gamePaused = false;
 
+    Rigidbody rbody;
+
     private void Start()
     {
         MyEvents.TogglePause.AddListener(TogglePause);
+        rbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -32,7 +35,9 @@ public class TankController : MonoBehaviour
         if (!gamePaused)
         {
             // move the object based on the values of the gamepad
-            transform.Translate(Vector3.forward * moveValue.magnitude * movementSpeed * Time.fixedDeltaTime);
+
+            rbody.velocity = transform.forward * moveValue.magnitude * movementSpeed * Time.fixedDeltaTime;
+
             if (moveValue.x != 0 || moveValue.y != 0)
             {
                 transform.LookAt(transform.position + new Vector3(moveValue.x, 0, moveValue.y));
@@ -71,7 +76,6 @@ public class TankController : MonoBehaviour
         {
             timeStamp = Time.time;
             GameObject instantiatedObject = Instantiate(projectile, barrelEnd.transform.position, barrelEnd.transform.rotation);
-            //Physics.IgnoreCollision(gameObject.GetComponentInChildren<Collider>(), instantiatedObject.GetComponentInChildren<Collider>());
             instantiatedObject.GetComponent<Rigidbody>().velocity = instantiatedObject.transform.forward * 20;
             instantiatedObject.GetComponent<Projectile>().SetPlayerID(playerID);
         }
