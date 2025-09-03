@@ -36,7 +36,7 @@ public class TankController : MonoBehaviour
         {
             // move the object based on the values of the gamepad
 
-            rbody.velocity = transform.forward * moveValue.magnitude * movementSpeed * Time.fixedDeltaTime;
+            rbody.linearVelocity = transform.forward * moveValue.magnitude * movementSpeed * Time.fixedDeltaTime;
 
             if (moveValue.x != 0 || moveValue.y != 0)
             {
@@ -76,7 +76,7 @@ public class TankController : MonoBehaviour
         {
             timeStamp = Time.time;
             GameObject instantiatedObject = Instantiate(projectile, barrelEnd.transform.position, barrelEnd.transform.rotation);
-            instantiatedObject.GetComponent<Rigidbody>().velocity = instantiatedObject.transform.forward * 20;
+            instantiatedObject.GetComponent<Rigidbody>().linearVelocity = instantiatedObject.transform.forward * 20;
             instantiatedObject.GetComponent<Projectile>().SetPlayerID(playerID);
         }
     }
