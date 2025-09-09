@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class Scores : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class Scores : MonoBehaviour
     int[] scores;
 
     float gameTime;
+    [SerializeField] float maxGameTime = 60;
+    [SerializeField] GameObject gameOverPanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +37,24 @@ public class Scores : MonoBehaviour
                 gameTime = 0;
             }
             UpdateTime();
-        }        
+            if (Gamepad.current != null)
+            {
+                if (Gamepad.current.startButton.wasPressedThisFrame)
+                {
+                    if (Time.timeScale > 0)
+                    {
+                        Time.timeScale = 0;
+                        gameOverPanel.SetActive(true);
+                    }
+                    else
+                    {
+                        Time.timeScale = 1;
+                        gameOverPanel.SetActive(false);
+                    }
+                    MyEvents.TogglePause.Invoke();
+                }
+            }
+        }
     }
 
     public void ActivateScoreBoards(int value)
@@ -58,7 +79,7 @@ public class Scores : MonoBehaviour
     }
     public void StartGame()
     {
-        gameTime = 60;
+        gameTime = maxGameTime;
         UpdateTime();
         ResetScores();
     }

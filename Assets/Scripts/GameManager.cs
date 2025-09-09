@@ -40,10 +40,6 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        //for (int i = 0; i < tanks.Count; i++)
-        //{
-        //    tanks[i].gameObject.GetComponent<TankController>().enabled = false;
-        //}
         MyEvents.TogglePause.Invoke();
         gameOverPanel.SetActive(true);
         EventSystem.current.SetSelectedGameObject(replayButton);
@@ -58,6 +54,7 @@ public class GameManager : MonoBehaviour
         MyEvents.TogglePause.Invoke();
         MyEvents.ActivateScores.Invoke(tanks.Count);
         gameOverPanel.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void OpenLobby()
@@ -69,5 +66,6 @@ public class GameManager : MonoBehaviour
         tanks.Clear();
         gameOverPanel.SetActive(false);
         lobbyPanel.SetActive(true);
+        Time.timeScale = 1;
     }
 }
