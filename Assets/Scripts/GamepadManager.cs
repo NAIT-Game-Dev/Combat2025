@@ -11,7 +11,6 @@ public class GamepadManager : MonoBehaviour
     void Start()
     {
         gamepadsConnected = Gamepad.all.Count;
-        MyEvents.OpenLobby.AddListener(ResetGamepadList);
     }
 
     // Update is called once per frame
@@ -88,10 +87,5 @@ public class GamepadManager : MonoBehaviour
     public int PlayerStatus(int index)
     {
         return gamepadID[index];
-    }
-
-    public void ResetGamepadList()
-    {
-        //gamepadID.Clear();
     }
 }

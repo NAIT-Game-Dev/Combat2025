@@ -458,9 +458,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 414121437}
-        m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
-        m_MethodName: OpenLobby
+      - m_Target: {fileID: 990518624}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ReturnToLobby
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1116,7 +1116,6 @@ GameObject:
   - component: {fileID: 414121436}
   - component: {fileID: 414121435}
   - component: {fileID: 414121434}
-  - component: {fileID: 414121437}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1198,18 +1197,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &414121437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 414121433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ccdef614e1ed654f9fd0c9ebd2408ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &440855344 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7177070792795160522, guid: 5474a4094ef1041488217fc212c3a43a, type: 3}
@@ -2132,8 +2119,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 414121437}
-        m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
+      - m_Target: {fileID: 990518624}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
@@ -2517,6 +2504,19 @@ MonoBehaviour:
   gameOverPanel: {fileID: 235728762}
   lobbyPanel: {fileID: 1715008753}
   replayButton: {fileID: 1001614117}
+  scorePanels:
+  - {fileID: 537054765}
+  - {fileID: 2111482041}
+  - {fileID: 1976802004}
+  - {fileID: 722709566}
+  scoreText:
+  - {fileID: 860290900}
+  - {fileID: 2095227144}
+  - {fileID: 1790966369}
+  - {fileID: 1002150825}
+  timeText: {fileID: 1940201064}
+  timerText: {fileID: 1267164281}
+  maxGameTime: 60
 --- !u!4 &990518625
 Transform:
   m_ObjectHideFlags: 0
@@ -2615,9 +2615,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 414121437}
-        m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
-        m_MethodName: ReplayGame
+      - m_Target: {fileID: 990518624}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Replay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3907,7 +3907,6 @@ GameObject:
   - component: {fileID: 1474554974}
   - component: {fileID: 1474554977}
   - component: {fileID: 1474554976}
-  - component: {fileID: 1474554975}
   m_Layer: 5
   m_Name: ScorePanel
   m_TagString: Untagged
@@ -3940,32 +3939,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1474554975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1474554973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 003e10e0c24bb6e4ebbca429f434874e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scorePanels:
-  - {fileID: 537054765}
-  - {fileID: 2111482041}
-  - {fileID: 1976802004}
-  - {fileID: 722709566}
-  scoreText:
-  - {fileID: 860290900}
-  - {fileID: 2095227144}
-  - {fileID: 1790966369}
-  - {fileID: 1002150825}
-  timeText: {fileID: 1940201064}
-  timerText: {fileID: 1267164281}
-  maxGameTime: 60
-  gameOverPanel: {fileID: 235728762}
 --- !u!114 &1474554976
 MonoBehaviour:
   m_ObjectHideFlags: 0
