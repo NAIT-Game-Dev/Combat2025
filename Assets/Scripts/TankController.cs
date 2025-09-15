@@ -1,5 +1,7 @@
+using NUnit.Framework.Constraints;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class TankController : MonoBehaviour
 {
@@ -14,6 +16,8 @@ public class TankController : MonoBehaviour
 
     [SerializeField] GameObject turret, barrelEnd, projectile;
 
+    [SerializeField] Image fireCooldown; 
+
     bool gamePaused = false;
 
     Rigidbody rbody;
@@ -27,7 +31,10 @@ public class TankController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Time.time > timeStamp + fireRate && fireCooldown.color == Color.red)
+        {
+            fireCooldown.color = Color.green;
+        }
     }
 
     private void FixedUpdate()
@@ -74,6 +81,7 @@ public class TankController : MonoBehaviour
     {
         if (Time.time > timeStamp + fireRate && !gamePaused)
         {
+            fireCooldown.color = Color.red;
             timeStamp = Time.time;
             GameObject instantiatedObject = Instantiate(projectile, barrelEnd.transform.position, barrelEnd.transform.rotation);
             Physics.IgnoreCollision(GetComponentInChildren<Collider>(), instantiatedObject.GetComponentInChildren<Collider>());

@@ -8,15 +8,21 @@ public class LobbyW2 : MonoBehaviour
 {
     [SerializeField] GamepadManager gamepadManager;
     [SerializeField] GameManager gameManager;
+
+    // List of text fields that tell which players have joined the lobby.
     [SerializeField] List<TMP_Text> playerText;
+
+    // Text fields that describe how to leave the lobby or start the game.
     [SerializeField] GameObject startText, leaveText;
 
     [SerializeField] GameObject lobbyPanel;
 
     [SerializeField] PlayerInputManager playerInputManager;
 
+    // Locations to spawn the player objects.
     [SerializeField] GameObject[] spawnLocations;
 
+    // Colors for the different player objects.
     Color[] tankColors = {Color.red, Color.blue, Color.green, Color.yellow};
 
     // Start is called before the first frame update
@@ -28,19 +34,23 @@ public class LobbyW2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // If a button was pressed on a gamepad.
         if (Gamepad.current != null)
         {
+            // If the start button was pressed add the current gamepadID to the gamepadManager.
             if (Gamepad.current.startButton.wasPressedThisFrame)
             {
                 gamepadManager.PlayerJoined(Gamepad.current.deviceId);
             }
 
+            // If the east button was pressed remove the current gamepadID from the gamepadManager.
             if (Gamepad.current.buttonEast.wasPressedThisFrame)
             {
                 gamepadManager.PlayerLeft(Gamepad.current.deviceId);
 
                 for (int i = 0; i < playerText.Count; i++)
                 {
+                    // Reset the text if the player leaves the lobby.
                     playerText[i].text = "Press Start to Join";
                 }
             }
