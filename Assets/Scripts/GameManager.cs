@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] List<GameObject> tanks;
     [SerializeField] GameObject[] spawnPoints;
+    [SerializeField] List<int> validSpawnZones;
     [SerializeField] GameObject gameOverPanel;
     [SerializeField] GameObject lobbyPanel;
     [SerializeField] GameObject replayButton;
@@ -21,6 +22,8 @@ public class GameManager : MonoBehaviour
     float gameTime;
     [SerializeField] float maxGameTime = 60;
 
+    LayerMask playerMask;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,9 @@ public class GameManager : MonoBehaviour
         scores = new int[4];
         MyEvents.AddScore.AddListener(IncreaseScore);
         MyEvents.ActivateScores.AddListener(ActivateScoreBoards);
+        validSpawnZones = new List<int>();
+
+        playerMask = LayerMask.GetMask("Player");
     }
 
     // Update is called once per frame
@@ -70,7 +76,16 @@ public class GameManager : MonoBehaviour
     }
     public void Respawn(int index)
     {
-        tanks[index].transform.position = spawnPoints[index].transform.position;
+        validSpawnZones.Clear();
+        for (int i = 0; i < spawnPoints.Length; i++)
+        {
+            if (!Physics.CheckBox(spawnPoints[i].transform.position, new Vector3(5,5,5), Quaternion.identity, playerMask))
+            {
+                validSpawnZones.Add(i);
+            }
+        }
+
+        tanks[index].transform.position = spawnPoints[validSpawnZones[UnityEngine.Random.Range(0, validSpawnZones.Count)]].transform.position;
         tanks[index].transform.rotation = Quaternion.identity;
         tanks[index].GetComponent<Health>().HealDamage(100);
     }
@@ -86,8 +101,11 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < tanks.Count; i++)
         {
-            Respawn(i);
+            tanks[i].transform.position = spawnPoints[i].transform.position;
+            tanks[i].transform.rotation = Quaternion.identity;
+            tanks[i].GetComponent<Health>().HealDamage(100);
         }
+
         MyEvents.TogglePause.Invoke();
         MyEvents.ActivateScores.Invoke(tanks.Count);
         gameOverPanel.SetActive(false);

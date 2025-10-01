@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 5881058549205644357}
   - component: {fileID: 368940448469017747}
   - component: {fileID: 2977713512207894149}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TankPrefab
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 8905488830970124533}
   - component: {fileID: 4351754574445279022}
   - component: {fileID: 3280605645041062792}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BodyModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 2650218171679728630}
   - component: {fileID: 2650218171680694582}
   - component: {fileID: 6495836095720950484}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TurretModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -471,7 +471,7 @@ GameObject:
   - component: {fileID: 6182141431579548940}
   - component: {fileID: 6885522040706448855}
   - component: {fileID: 3435267375671182334}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -547,7 +547,7 @@ GameObject:
   - component: {fileID: 9138397048206587382}
   - component: {fileID: 1662764800539083984}
   - component: {fileID: 3406507808767112086}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -646,7 +646,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1947026867920896036}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -679,7 +679,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4052329929252346688}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BarrelEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -709,6 +709,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3039447769649434767}
     m_Modifications:
+    - target: {fileID: 1185064627478150445, guid: e2eed0fb44a07e940b2e57dadcd3e7f9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4430609288546391887, guid: e2eed0fb44a07e940b2e57dadcd3e7f9, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.78
@@ -716,6 +720,10 @@ PrefabInstance:
     - target: {fileID: 4430609288546391887, guid: e2eed0fb44a07e940b2e57dadcd3e7f9, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 1.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5004172073864606120, guid: e2eed0fb44a07e940b2e57dadcd3e7f9, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6038500623381523094, guid: e2eed0fb44a07e940b2e57dadcd3e7f9, type: 3}
       propertyPath: m_RootOrder
@@ -764,6 +772,14 @@ PrefabInstance:
     - target: {fileID: 6884922764330482395, guid: e2eed0fb44a07e940b2e57dadcd3e7f9, type: 3}
       propertyPath: m_Name
       value: HealthUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884922764330482395, guid: e2eed0fb44a07e940b2e57dadcd3e7f9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373979580530974895, guid: e2eed0fb44a07e940b2e57dadcd3e7f9, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
