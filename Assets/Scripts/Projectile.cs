@@ -7,6 +7,9 @@ public class Projectile : MonoBehaviour
     float damage = 10.0f;
 
     [SerializeField] int playerID = -1;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +33,7 @@ public class Projectile : MonoBehaviour
 
         if (healthscript != null )
         {
-            healthscript.ApplyDamage(damage, playerID);
+            healthscript.ApplyDamage(damage, playerID);            
         }
         
         DestroyProjectile();

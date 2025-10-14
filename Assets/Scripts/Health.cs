@@ -6,11 +6,15 @@ public class Health : MonoBehaviour
 {
     [SerializeField]
     float currentHealth, minHealth = 0, maxHealth = 100;
-    
+
+    [SerializeField] AudioSource hitSounds;
+    [SerializeField] AudioClip cannonHit;
+
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
+        hitSounds = GetComponent<AudioSource>();
     }
 
     public float GetCurrentHealth()
@@ -26,6 +30,7 @@ public class Health : MonoBehaviour
     public void ApplyDamage(float damage, int ID)
     {
         currentHealth -= damage;
+        hitSounds.PlayOneShot(cannonHit);
 
         if (currentHealth < minHealth)
         {

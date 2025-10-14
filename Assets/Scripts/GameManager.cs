@@ -74,17 +74,22 @@ public class GameManager : MonoBehaviour
     {
         tanks.Add(tank);
     }
+
+    // Respawn tank when reduced to 0 health
     public void Respawn(int index)
     {
+        // Choose a non occupied spawn zone to respawn in
         validSpawnZones.Clear();
         for (int i = 0; i < spawnPoints.Length; i++)
         {
+            // Add all non occupied spawn zones to a list
             if (!Physics.CheckBox(spawnPoints[i].transform.position, new Vector3(5,5,5), Quaternion.identity, playerMask))
             {
                 validSpawnZones.Add(i);
             }
         }
 
+        // Choose randomly from the list of non occupied spawn zones
         tanks[index].transform.position = spawnPoints[validSpawnZones[UnityEngine.Random.Range(0, validSpawnZones.Count)]].transform.position;
         tanks[index].transform.rotation = Quaternion.identity;
         tanks[index].GetComponent<Health>().HealDamage(100);
@@ -99,6 +104,7 @@ public class GameManager : MonoBehaviour
 
     public void Replay()
     {
+        // On a replay set all tanks to the original spawn zones and reset heath and rotation.
         for (int i = 0; i < tanks.Count; i++)
         {
             tanks[i].transform.position = spawnPoints[i].transform.position;

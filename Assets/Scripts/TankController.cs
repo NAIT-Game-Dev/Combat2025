@@ -16,7 +16,10 @@ public class TankController : MonoBehaviour
 
     [SerializeField] GameObject turret, barrelEnd, projectile;
 
-    [SerializeField] Image fireCooldown; 
+    [SerializeField] Image fireCooldown;
+
+    [SerializeField] AudioClip cannonFire;
+    [SerializeField] AudioSource tankSounds;
 
     bool gamePaused = false;
 
@@ -26,6 +29,7 @@ public class TankController : MonoBehaviour
     {
         MyEvents.TogglePause.AddListener(TogglePause);
         rbody = GetComponent<Rigidbody>();
+        tankSounds = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -87,6 +91,8 @@ public class TankController : MonoBehaviour
             Physics.IgnoreCollision(GetComponentInChildren<Collider>(), instantiatedObject.GetComponentInChildren<Collider>());
             instantiatedObject.GetComponent<Rigidbody>().linearVelocity = instantiatedObject.transform.forward * 20;
             instantiatedObject.GetComponent<Projectile>().SetPlayerID(playerID);
+
+            tankSounds.PlayOneShot(cannonFire);
         }
     }
 
