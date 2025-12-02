@@ -20,6 +20,8 @@ public class TankController : MonoBehaviour
 
     [SerializeField] AudioClip cannonFire;
     [SerializeField] AudioSource tankSounds;
+    [SerializeField] GameObject cannonSmoke;
+    GameObject mySmoke;
 
     bool gamePaused = false;
 
@@ -30,6 +32,7 @@ public class TankController : MonoBehaviour
         MyEvents.TogglePause.AddListener(TogglePause);
         rbody = GetComponent<Rigidbody>();
         tankSounds = GetComponent<AudioSource>();
+        mySmoke = Instantiate(cannonSmoke);
     }
 
     // Update is called once per frame
@@ -93,6 +96,9 @@ public class TankController : MonoBehaviour
             instantiatedObject.GetComponent<Projectile>().SetPlayerID(playerID);
 
             tankSounds.PlayOneShot(cannonFire);
+            mySmoke.transform.position = barrelEnd.transform.position;
+            mySmoke.transform.rotation = barrelEnd.transform.rotation;
+            mySmoke.GetComponent<ParticleSystem>().Play();
         }
     }
 

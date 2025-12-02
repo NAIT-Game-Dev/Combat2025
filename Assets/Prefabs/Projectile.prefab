@@ -170,7 +170,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &5649536120595535222
 MonoBehaviour:
@@ -185,3 +185,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerID: -1
+  sparks: {fileID: 273872346753813263, guid: 365a52979c25ede48b1b760e18229c2d, type: 3}

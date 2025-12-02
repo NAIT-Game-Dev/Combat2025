@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
 
     [SerializeField] int playerID = -1;
 
-    
+    [SerializeField] GameObject sparks;
 
     // Start is called before the first frame update
     void Start()
@@ -33,8 +33,10 @@ public class Projectile : MonoBehaviour
 
         if (healthscript != null )
         {
-            healthscript.ApplyDamage(damage, playerID);            
+            healthscript.ApplyDamage(damage, playerID);
+            Instantiate(sparks, collision.GetContact(0).point - (transform.forward * 0.3f), Quaternion.LookRotation(-transform.forward));
         }
+        
         
         DestroyProjectile();
     }

@@ -4,5 +4,9 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Workflow2.unity
+    guid: 13e9fae9784831f46910ea61d440b96b
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
