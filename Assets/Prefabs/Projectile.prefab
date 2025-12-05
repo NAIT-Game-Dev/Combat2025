@@ -185,4 +185,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerID: -1
-  sparks: {fileID: 273872346753813263, guid: 365a52979c25ede48b1b760e18229c2d, type: 3}
+  sparksObject: {fileID: 273872346753813263, guid: 365a52979c25ede48b1b760e18229c2d, type: 3}

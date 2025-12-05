@@ -1,4 +1,4 @@
-using NUnit.Framework.Constraints;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -16,12 +16,15 @@ public class TankController : MonoBehaviour
 
     [SerializeField] GameObject turret, barrelEnd, projectile;
 
+    int numberOfProjectiles = 1;
+    [SerializeField] int projectileIndex = 0;
+    [SerializeField] List<GameObject> projectilePool;
+
     [SerializeField] Image fireCooldown;
 
     [SerializeField] AudioClip cannonFire;
     [SerializeField] AudioSource tankSounds;
-    [SerializeField] GameObject cannonSmoke;
-    GameObject mySmoke;
+    [SerializeField] ParticleSystem cannonSmoke;
 
     bool gamePaused = false;
 
@@ -32,7 +35,15 @@ public class TankController : MonoBehaviour
         MyEvents.TogglePause.AddListener(TogglePause);
         rbody = GetComponent<Rigidbody>();
         tankSounds = GetComponent<AudioSource>();
-        mySmoke = Instantiate(cannonSmoke);
+
+        projectilePool = new List<GameObject>();
+        for (int i = 0; i < numberOfProjectiles; i++)
+        {
+            GameObject instantiatedObject = Instantiate(projectile);
+            projectilePool.Add(instantiatedObject);
+            Physics.IgnoreCollision(GetComponentInChildren<Collider>(), instantiatedObject.GetComponentInChildren<Collider>());
+            instantiatedObject.GetComponent<Projectile>().SetPlayerID(playerID);
+        }
     }
 
     // Update is called once per frame
@@ -90,15 +101,22 @@ public class TankController : MonoBehaviour
         {
             fireCooldown.color = Color.red;
             timeStamp = Time.time;
-            GameObject instantiatedObject = Instantiate(projectile, barrelEnd.transform.position, barrelEnd.transform.rotation);
-            Physics.IgnoreCollision(GetComponentInChildren<Collider>(), instantiatedObject.GetComponentInChildren<Collider>());
-            instantiatedObject.GetComponent<Rigidbody>().linearVelocity = instantiatedObject.transform.forward * 20;
-            instantiatedObject.GetComponent<Projectile>().SetPlayerID(playerID);
+            projectilePool[projectileIndex].transform.position = barrelEnd.transform.position;
+            projectilePool[projectileIndex].transform.rotation = barrelEnd.transform.rotation;
+            projectilePool[projectileIndex].SetActive(true);
+            
+            projectilePool[projectileIndex].GetComponent<Rigidbody>().linearVelocity = projectilePool[projectileIndex].transform.forward * 20;
+            
 
             tankSounds.PlayOneShot(cannonFire);
-            mySmoke.transform.position = barrelEnd.transform.position;
-            mySmoke.transform.rotation = barrelEnd.transform.rotation;
-            mySmoke.GetComponent<ParticleSystem>().Play();
+            
+            cannonSmoke.Play();
+
+            projectileIndex++;
+            if (projectileIndex >= projectilePool.Count)
+            {
+                projectileIndex = 0;
+            }
         }
     }
 

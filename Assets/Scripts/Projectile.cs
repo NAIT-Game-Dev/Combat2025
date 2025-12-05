@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -7,13 +5,17 @@ public class Projectile : MonoBehaviour
     float damage = 10.0f;
 
     [SerializeField] int playerID = -1;
+    
+    [SerializeField] GameObject sparksObject;
+    ParticleSystem sparks;
 
-    [SerializeField] GameObject sparks;
 
     // Start is called before the first frame update
     void Start()
     {
         Invoke("DestroyProjectile", 3.0f);
+        GameObject instantiatedObject = Instantiate(sparksObject);
+        sparks = instantiatedObject.GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -34,7 +36,10 @@ public class Projectile : MonoBehaviour
         if (healthscript != null )
         {
             healthscript.ApplyDamage(damage, playerID);
-            Instantiate(sparks, collision.GetContact(0).point - (transform.forward * 0.3f), Quaternion.LookRotation(-transform.forward));
+            sparks.transform.position = collision.GetContact(0).point - (transform.forward * 0.3f);
+            sparks.transform.rotation = Quaternion.LookRotation(-transform.forward);
+            sparks.Play();
+            //Instantiate(sparks, collision.GetContact(0).point - (transform.forward * 0.3f), Quaternion.LookRotation(-transform.forward));
         }
         
         
@@ -43,6 +48,6 @@ public class Projectile : MonoBehaviour
 
     void DestroyProjectile()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
