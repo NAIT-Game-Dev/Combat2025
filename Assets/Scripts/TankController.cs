@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TankController : MonoBehaviour
 {
     float movementSpeed = 300.0f;
-    float fireRate = 2.0f;
+    float fireRate = 1.0f;
     float timeStamp;
     [SerializeField] int playerID;
 
@@ -16,7 +16,7 @@ public class TankController : MonoBehaviour
 
     [SerializeField] GameObject turret, barrelEnd, projectile;
 
-    int numberOfProjectiles = 1;
+    int numberOfProjectiles = 3;
     [SerializeField] int projectileIndex = 0;
     [SerializeField] List<GameObject> projectilePool;
 

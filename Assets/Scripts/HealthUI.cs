@@ -20,7 +20,8 @@ public class HealthUI : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
+    {   
+        // Scale the health bar by the amount of health left
         if (healthScript != null)
         {
             healthbar.rectTransform.localScale = new Vector3(healthScript.GetCurrentHealth() / healthScript.GetMaxHealth(), 1, 1);

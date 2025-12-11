@@ -27,29 +27,43 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Set the screen resolution to make sure UI elements look proper
         Screen.SetResolution(1600, 1000, true);
+
+        // Listen for the appropriate events
         MyEvents.GameOver.AddListener(GameOver);
         MyEvents.Replay.AddListener(Replay);
-
-        scores = new int[4];
         MyEvents.AddScore.AddListener(IncreaseScore);
         MyEvents.ActivateScores.AddListener(ActivateScoreBoards);
+        MyEvents.RespawnPlayer.AddListener(Respawn);
+
+        // Initialize scores for the four players
+        scores = new int[4];
+        
+        // Initialize a list of valid spawn zones used when respawning
         validSpawnZones = new List<int>();
 
+        // Make a mask that will only see the player objects
         playerMask = LayerMask.GetMask("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
+        // If the game has started
         if (gameTime > 0)
         {
+            // Decrement the time until it hits zero
             gameTime -= Time.deltaTime;
             if (gameTime < 0)
             {
                 gameTime = 0;
             }
+
+            // Update the time UI
             UpdateTime();
+
+            // If someone presses the start button then bring up the pause menu
             if (Gamepad.current != null)
             {
                 if (Gamepad.current.startButton.wasPressedThisFrame)
