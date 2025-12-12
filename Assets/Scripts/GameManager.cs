@@ -17,7 +17,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMPro.TextMeshProUGUI[] scoreText;
     [SerializeField] TMPro.TextMeshProUGUI timeText;
     [SerializeField] TMPro.TextMeshProUGUI timerText;
+    [SerializeField] TMPro.TextMeshProUGUI winnerText;
     int[] scores;
+
+    Color[] tankColors = {Color.red, Color.blue, Color.green, Color.yellow};
 
     float gameTime;
     [SerializeField] float maxGameTime = 60;
@@ -58,6 +61,22 @@ public class GameManager : MonoBehaviour
             if (gameTime < 0)
             {
                 gameTime = 0;
+                timeText.text = "    Game Over";
+                MyEvents.GameOver.Invoke();
+
+                int winner = DetermineWinner();
+                if (winner == 0)
+                {
+                    winnerText.color = Color.white;
+                    winnerText.text = "No Winner";                    
+                }
+                else
+                {
+                    winnerText.color = tankColors[winner - 1];
+                    winnerText.text = "Player " + winner + " Wins";
+                }
+                
+                winnerText.gameObject.SetActive(true);
             }
 
             // Update the time UI
@@ -169,6 +188,7 @@ public class GameManager : MonoBehaviour
         gameTime = maxGameTime;
         UpdateTime();
         ResetScores();
+        winnerText.gameObject.SetActive(false);
     }
 
     void UpdateTime()
@@ -176,12 +196,12 @@ public class GameManager : MonoBehaviour
         if (gameTime > 0)
         {
             timerText.text = gameTime.ToString("##");
-            timeText.text = "Time:";
+            timeText.text = "     Time";
         }
         else
         {
-            timeText.text = "Game Over";
-            MyEvents.GameOver.Invoke();
+            //timeText.text = "    Game Over";
+            //MyEvents.GameOver.Invoke();
         }
     }
 
@@ -192,6 +212,28 @@ public class GameManager : MonoBehaviour
             scores[i] = 0;
             scoreText[i].text = scores[i].ToString();
         }
+    }
+
+    int DetermineWinner()
+    {
+        int winner, winningScore;
+
+        winner = -1;
+        winningScore = 0;
+
+        for (int i = 0; i < scores.Length; i++)
+        {
+            if (scores[i] > winningScore)
+            {
+                winner = i;
+                winningScore = scores[i];
+            }
+            else if (scores[i] == winningScore)
+            {
+                winner = -1;
+            }
+        }
+        return winner + 1;
     }
 
     public void ExitGame()

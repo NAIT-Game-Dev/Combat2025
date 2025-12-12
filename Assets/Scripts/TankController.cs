@@ -138,5 +138,6 @@ public class TankController : MonoBehaviour
     {
         gamePaused = !gamePaused;
         engineSource.Stop();
+        rbody.linearVelocity = Vector3.zero;
     }
 }
