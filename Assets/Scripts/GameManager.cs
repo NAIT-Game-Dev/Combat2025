@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < spawnPoints.Length; i++)
         {
             // Add all non occupied spawn zones to a list
-            if (!Physics.CheckBox(spawnPoints[i].transform.position, new Vector3(5,5,5), Quaternion.identity, playerMask))
+            if (!Physics.CheckBox(spawnPoints[i].transform.position, new Vector3(5, 5, 5), Quaternion.identity, playerMask))
             {
                 validSpawnZones.Add(i);
             }

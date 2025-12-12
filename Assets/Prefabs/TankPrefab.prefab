@@ -118,6 +118,8 @@ MonoBehaviour:
   turret: {fileID: 6793082384672819278}
   barrelEnd: {fileID: 8134844120824964994}
   projectile: {fileID: 1396887250594538189, guid: 3ad330c10ffc541468a19827cff768b2, type: 3}
+  projectileIndex: 0
+  projectilePool: []
   fireCooldown: {fileID: 3435267375671182334}
   cannonFire: {fileID: 8300000, guid: 5349269236f91174d922ab64b2a314ee, type: 3}
   tankSounds: {fileID: 0}
