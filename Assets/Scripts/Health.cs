@@ -6,14 +6,13 @@ public class Health : MonoBehaviour
     [SerializeField]
     float currentHealth, minHealth = 0, maxHealth = 100;
     bool invulnerable = false;
-    float timeStamp, vulnerableTime;
+    float invulnerableStamp, vulnerableTime, flashStamp, flashTime;
 
     // Object references for sounds when damaged
     [SerializeField] AudioSource hitSounds;
     [SerializeField] AudioClip cannonHit;
 
-    // Colors for the different player objects.
-    Color[] tankColors = { Color.red, Color.blue, Color.green, Color.yellow };
+    Material myMat;
 
     // Start is called before the first frame update
     void Start()
@@ -23,15 +22,31 @@ public class Health : MonoBehaviour
 
         // Get the audio source
         hitSounds = GetComponent<AudioSource>();
-        vulnerableTime = 3.0f;
+        vulnerableTime = 4.0f;
+        flashTime = 0.2f;
+
+        myMat = GetComponentInChildren<MeshRenderer>().material;
     }
 
     private void Update()
     {
-        if (Time.time > timeStamp + vulnerableTime && invulnerable)
+        if (Time.time > invulnerableStamp + vulnerableTime && invulnerable)
         {
             invulnerable = false;
-            GetComponentInChildren<MeshRenderer>().material.color = tankColors[GetComponent<TankController>().GetPlayerID()];
+
+            myMat.color = new Color(myMat.color.r, myMat.color.g, myMat.color.b, 1f);
+        }
+        else if (invulnerable && Time.time > flashStamp + flashTime)
+        {
+            flashStamp = Time.time;
+            if (myMat.color.a == 1)
+            {
+                myMat.color = new Color(myMat.color.r, myMat.color.g, myMat.color.b, 0.3f);
+            }
+            else
+            {
+                myMat.color = new Color(myMat.color.r, myMat.color.g, myMat.color.b, 1f);
+            }
         }
     }
 
@@ -64,10 +79,11 @@ public class Health : MonoBehaviour
             {
                 MyEvents.AddScore.Invoke(ID);
                 MyEvents.RespawnPlayer.Invoke(GetComponent<TankController>().GetPlayerID());
+                
+                myMat.color = new Color(myMat.color.r, myMat.color.g, myMat.color.b, 0.3f);
 
-                GetComponentInChildren<MeshRenderer>().material.color = Color.white;
                 invulnerable = true;
-                timeStamp = Time.time;
+                invulnerableStamp = Time.time;
             }
         }        
     }

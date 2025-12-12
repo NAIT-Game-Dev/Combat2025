@@ -24,6 +24,7 @@ public class LobbyW2 : MonoBehaviour
 
     // Colors for the different player objects.
     Color[] tankColors = {Color.red, Color.blue, Color.green, Color.yellow};
+    [SerializeField] Material[] tankMaterials;
 
     // Start is called before the first frame update
     void Start()
@@ -109,7 +110,8 @@ public class LobbyW2 : MonoBehaviour
             PlayerInput player = playerInputManager.JoinPlayer(i, -1, null,  Gamepad.all[index]);
             player.transform.position = spawnLocations[i].transform.position;
             player.GetComponent<TankController>().SetPlayerID(i);
-            player.GetComponentInChildren<MeshRenderer>().material.color = tankColors[i];
+            //player.GetComponentInChildren<MeshRenderer>().material.color = tankColors[i];
+            player.GetComponentInChildren<MeshRenderer>().material = tankMaterials[i];
             gameManager.AddTank(player.gameObject);            
         }
         MyEvents.ActivateScores.Invoke(gamepadManager.PlayerCount());
