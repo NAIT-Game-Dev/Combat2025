@@ -23,7 +23,7 @@ public class TankController : MonoBehaviour
     [SerializeField] Image fireCooldown;
 
     [SerializeField] AudioClip cannonFire;
-    [SerializeField] AudioSource tankSounds;
+    [SerializeField] AudioSource cannonSource, engineSource;
     [SerializeField] ParticleSystem cannonSmoke;
 
     bool gamePaused = false;
@@ -34,7 +34,6 @@ public class TankController : MonoBehaviour
     {
         MyEvents.TogglePause.AddListener(TogglePause);
         rbody = GetComponent<Rigidbody>();
-        tankSounds = GetComponent<AudioSource>();
 
         projectilePool = new List<GameObject>();
         for (int i = 0; i < numberOfProjectiles; i++)
@@ -62,6 +61,21 @@ public class TankController : MonoBehaviour
             // move the object based on the values of the gamepad
 
             rbody.linearVelocity = transform.forward * moveValue.magnitude * movementSpeed * Time.fixedDeltaTime;
+
+            if (moveValue.magnitude > 0)
+            {
+                if (!engineSource.isPlaying)
+                {
+                    engineSource.Play();
+                }
+            }
+            else
+            {
+                if (engineSource.isPlaying)
+                {
+                    engineSource.Stop();
+                }
+            }
 
             if (moveValue.x != 0 || moveValue.y != 0)
             {
@@ -108,7 +122,7 @@ public class TankController : MonoBehaviour
             projectilePool[projectileIndex].GetComponent<Rigidbody>().linearVelocity = projectilePool[projectileIndex].transform.forward * 20;
             
 
-            tankSounds.PlayOneShot(cannonFire);
+            cannonSource.PlayOneShot(cannonFire);
             
             cannonSmoke.Play();
 
@@ -123,5 +137,6 @@ public class TankController : MonoBehaviour
     public void TogglePause()
     {
         gamePaused = !gamePaused;
+        engineSource.Stop();
     }
 }
