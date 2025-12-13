@@ -373,7 +373,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.8113208, g: 0.69847906, b: 0.2942526, a: 1}
     m_HighlightedColor: {r: 0.9245283, g: 0.7478959, b: 0.24809144, a: 1}
     m_PressedColor: {r: 0.5377358, g: 0.43186176, b: 0.10878723, a: 1}
-    m_SelectedColor: {r: 0.6886792, g: 0.5770966, b: 0.25013348, a: 1}
+    m_SelectedColor: {r: 0.62352943, g: 0.5411765, b: 0.3019608, a: 1}
     m_DisabledColor: {r: 0.8301887, g: 0.6796029, b: 0.14445631, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2380,7 +2380,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.8113208, g: 0.69847906, b: 0.2942526, a: 1}
     m_HighlightedColor: {r: 0.9245283, g: 0.7478959, b: 0.24809144, a: 1}
     m_PressedColor: {r: 0.5377358, g: 0.43186176, b: 0.10878723, a: 1}
-    m_SelectedColor: {r: 0.6886792, g: 0.5770966, b: 0.25013348, a: 1}
+    m_SelectedColor: {r: 0.62352943, g: 0.5411765, b: 0.3019608, a: 1}
     m_DisabledColor: {r: 0.8301887, g: 0.6796029, b: 0.14445631, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2928,7 +2928,7 @@ MonoBehaviour:
   timeText: {fileID: 1940201064}
   timerText: {fileID: 1267164281}
   winnerText: {fileID: 351234337}
-  maxGameTime: 30
+  maxGameTime: 60
 --- !u!4 &990518625
 Transform:
   m_ObjectHideFlags: 0
@@ -3007,7 +3007,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.8113208, g: 0.69847906, b: 0.2942526, a: 1}
     m_HighlightedColor: {r: 0.9245283, g: 0.7478959, b: 0.24809144, a: 1}
     m_PressedColor: {r: 0.5377358, g: 0.43186176, b: 0.10878723, a: 1}
-    m_SelectedColor: {r: 0.6886792, g: 0.5770966, b: 0.25013348, a: 1}
+    m_SelectedColor: {r: 0.6226415, g: 0.5386518, b: 0.29826748, a: 1}
     m_DisabledColor: {r: 0.8301887, g: 0.6796029, b: 0.14445631, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
